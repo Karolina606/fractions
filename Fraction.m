@@ -1,11 +1,25 @@
 #import "Fraction.h"
 
-static int gCounter = 0;	// how many instances do we made
+static int gCounter = 0;	
+				// how many instances do we made
 				// you can set its value in the [+initialize] methond, which works on the beginnig of the program
 
-//int gCounterAddMethod = 0;	// when we do it static we can't see it from FractionMathOps.m
+//int gCounterAddMethod = 0;	
+				// when we do it static we can't see it from FractionMathOps.m
 				// now it is not reseting in each call of add: (it is still static but able to extern)
 				// it is now in the FractionMathOps.m
+
+int gcd(int u, int v){
+	//	greatest common divisor
+	int t;
+
+	while( v != 0){
+		t = u % v;
+		u = v;
+		v = t;
+	}
+	return u;
+}
 
 @implementation Fraction
 // I have to implement all methods from Fraction.h
@@ -43,28 +57,10 @@ static int gCounter = 0;	// how many instances do we made
 }
 
 -(void) reduce{
-	int divider = (numerator < denominator)? numerator : denominator;
-
-	// to reduce by -1 if possible
-	if(numerator < 0 && denominator < 0){
-		numerator *= -1;
-		denominator *= -1;
-	}
-
-	if(divider < 0){
-		divider *= -1; // to change sign of divider
-	}
-
-	while(divider > 1){
-		if( numerator % divider == 0 && denominator % divider == 0 ){
-			numerator /= divider;
-			denominator /= divider;
-			return;
-		}
-		else{
-			divider--;
-		}
-	}
+	//	reduce fraction
+	int divider = gcd(numerator, denominator);
+	numerator /= divider;
+	denominator /= divider;
 }
 
 -(double) toNumber{
@@ -96,7 +92,7 @@ static int gCounter = 0;	// how many instances do we made
 	return [self initWith: 0 over: 0];
 }
 
-//CLASS METHODS
+//CLASS METHODS ------------------------------------------------------------------------------------
 +(Fraction *) allocF{
 	//we do not overwritte alloc method
 	
@@ -114,75 +110,5 @@ static int gCounter = 0;	// how many instances do we made
 +(void) setCounter: (int) c{
 	gCounter = c;
 }
-
-/*+(void) initialize{
-	// this metod is send only once to each class, on the program begining
-	// it can for example set value of static class variable as follows	
-	
-	gCounter = 1;
-}*/
-
-/*+(int) countAddMethodCalls{				//it is in FractionMathOps.m
-	// it returns amound of add: method calls
-	return gCounterAddMethod;
-}*/
-
-
-// NSComparisionMethods IMPLEMENTATION
-/* It works quit propery form this place, but I move it to FractionNSCompariosonMethods.m
--(BOOL) isEqualTo: (id) object{
-	if( [self toNumber] == [object toNumber]){
-		return true;
-	}
-	else{
-		return false;
-	}
-}
-
--(BOOL) isLessThanOrEqualTo: (id) object{
-	if( [self toNumber] <= [object toNumber] ){
-		return true;
-	}
-	else{
-		return false;
-	}
-}
-
--(BOOL) isLessThan: (id) object{
-	if( [self toNumber] < [object toNumber] ){
-		return true;
-	}
-	else{
-		return false;
-	}
-}
-
--(BOOL) isGreaterThanOrEqualTo: (id) object{
-	if( ! [self isLessThan: object] ){
-		return true;
-	}
-	else{
-		return false;
-	}
-}
-
--(BOOL) isGreaterThan: (id) object{
-	if( ! [self isLessThanOrEqualTo: object] ){
-		return true;
-	}
-	else{
-		return false;
-	}
-}
-
--(BOOL) isNotEqualTo: (id) object{
-	if( ! [self isEqual: object] ){
-		return true;
-	}
-	else{
-		return false;
-	}
-}
-*/
 
 @end

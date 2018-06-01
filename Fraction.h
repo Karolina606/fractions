@@ -14,7 +14,7 @@
 -(void) setTo: (int) n over: (int) d;
 -(id) initWith: (int) n over: (int) d;
 
-// calss method
+// class method
 +(Fraction *) allocF;
 +(int) count;
 +(void) setCounter: (int) c;
