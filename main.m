@@ -121,13 +121,19 @@ int main(int argc, char const * argv[]){
 	printf("Size of Fraction: %li\n", sizeof(Fraction));
 	printf("Size of int: %li\n", sizeof(int));
 	printf("Size of float: %li\n", sizeof(float));
-	printf("Size of double: %li\n", sizeof(double));
+	printf("Size of double: %li\n\n", sizeof(double));
+
+	NSArray * fractionArray = [NSArray arrayWithObjects: (Fraction *) fraction1, (Fraction *) fraction2, (Fraction *) fraction4, nil];
+	Fraction * sumFraction = [Fraction sumOfFractionArray: fractionArray];
+	printf("Sum of farction1, fraction2, fraction4:\n ");
+	[sumFraction print: NO];
 
 	//RELEASE
 	[fraction1 release];
 	[fraction2 release];
 	[fraction3 release];
 	[fraction4 release];
+	[sumFraction release];
 	[pool drain];
 	return 0;
 }

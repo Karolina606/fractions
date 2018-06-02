@@ -1,32 +1,24 @@
 #import "Fraction.h"
+#import "FractionMathOps.h"
 
-static int gCounter = 0;	
-				// how many instances do we made
-				// you can set its value in the [+initialize] methond, which works on the beginnig of the program
+static int gCounter = 0;
 
-//int gCounterAddMethod = 0;	
-				// when we do it static we can't see it from FractionMathOps.m
-				// now it is not reseting in each call of add: (it is still static but able to extern)
-				// it is now in the FractionMathOps.m
+//	functions declaration -------------------------------------------
+int gcd(int u, int v);
 
-int gcd(int u, int v){
-	//	greatest common divisor
-	int t;
-
-	while( v != 0){
-		t = u % v;
-		u = v;
-		v = t;
-	}
-	return u;
-}
-
+//	FRACTION IMPLEMENTATION ---------------------------------------
 @implementation Fraction
-// I have to implement all methods from Fraction.h
 
 @synthesize numerator, denominator;
 
 -(void) print: (BOOL) ifReduce{
+
+	// -(void) print: 	that method prints a fraction
+	// Arguments:		
+	//	ifReduce		if fraction should be reduced
+	// Return:
+	//	void
+
 	// if reduce
 	if(ifReduce){
 		[self reduce];
@@ -89,7 +81,7 @@ int gcd(int u, int v){
 
 -(id) init{
 	//we overwrite init becouse we want to have some default values in out object
-	return [self initWith: 0 over: 0];
+	return [self initWith: 0 over: 1];
 }
 
 //CLASS METHODS ------------------------------------------------------------------------------------
@@ -111,4 +103,39 @@ int gcd(int u, int v){
 	gCounter = c;
 }
 
++(Fraction *) sumOfFractionArray: (NSArray *) array{
+	Fraction * sum = [[Fraction alloc] initWith:0 over:1];
+	Fraction * sum2;
+
+	for( Fraction * currentFraction in array ){
+		sum2 = [currentFraction add: sum];
+		[sum release];
+		sum = sum2;
+	}
+	return sum;
+}
+
 @end
+
+
+//	functions' implementation -------------------------------------------
+int gcd(int u, int v){
+	//	greatest common divisor
+	int t;
+
+	while( v != 0){
+		t = u % v;
+		u = v;
+		v = t;
+	}
+	return u;
+}
+
+// (*Fraction) sumOfFractionArray( (*NSArray) array ){
+// 	Fraction * sum = [[Fraction alloc] init];
+	
+// 	for( id currentFraction in array ){
+// 		[sum add: currentFraction];
+// 	}
+// 	return sum;
+// }
