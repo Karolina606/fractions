@@ -62,7 +62,7 @@ int gcd(int u, int v);
 	denominator = d;
 }
 
-//INIT
+//	INIT
 -(id) initWith: (int) n over: (int) d{
 	self = [super init];
 	
@@ -72,9 +72,14 @@ int gcd(int u, int v);
 	return self;
 }
 
+//	OVERWRITTEN	
 -(id) init{
 	//we overwrite init becouse we want to have some default values in out object
 	return [self initWith: 0 over: 1];
+}
+
+-(NSString *) description{
+	return [NSString stringWithFormat: @"%i/%i", numerator, denominator];
 }
 
 // ################## class methods #####################

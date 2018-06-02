@@ -128,6 +128,10 @@ int main(int argc, char const * argv[]){
 	printf("Sum of farction1, fraction2, fraction4:\n ");
 	[sumFraction print: NO];
 
+	// NSString format with %@ --> display Fraction
+	printf("\n");
+	NSLog(@"%@", fraction1);
+
 	//RELEASE
 	[fraction1 release];
 	[fraction2 release];
