@@ -3,22 +3,15 @@
 
 static int gCounter = 0;
 
-//	functions declaration -------------------------------------------
+// ################## functions declaration #######################
 int gcd(int u, int v);
 
-//	FRACTION IMPLEMENTATION ---------------------------------------
+// ################## FRACTION IMPLEMENTSTION #####################
 @implementation Fraction
 
 @synthesize numerator, denominator;
 
 -(void) print: (BOOL) ifReduce{
-
-	// -(void) print: 	that method prints a fraction
-	// Arguments:		
-	//	ifReduce		if fraction should be reduced
-	// Return:
-	//	void
-
 	// if reduce
 	if(ifReduce){
 		[self reduce];
@@ -84,7 +77,7 @@ int gcd(int u, int v);
 	return [self initWith: 0 over: 1];
 }
 
-//CLASS METHODS ------------------------------------------------------------------------------------
+// ################## class methods #####################
 +(Fraction *) allocF{
 	//we do not overwritte alloc method
 	
@@ -118,7 +111,7 @@ int gcd(int u, int v);
 @end
 
 
-//	functions' implementation -------------------------------------------
+// ################## functions' implementations #####################
 int gcd(int u, int v){
 	//	greatest common divisor
 	int t;
