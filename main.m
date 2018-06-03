@@ -1,3 +1,4 @@
+// Program to deal with fractions
 #import <Foundation/Foundation.h>
 #import "Fraction.h"
 #import "FractionMathOps.h"	//without it program sitll work but it give warning "Fraction may not respond add:..."
