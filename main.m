@@ -1,4 +1,5 @@
-// Program to deal with fractions
+//	Program to deal with fractions
+//	Author: Karolina Nogacka
 #import <Foundation/Foundation.h>
 #import "Fraction.h"
 #import "FractionMathOps.h"	//without it program sitll work but it give warning "Fraction may not respond add:..."
